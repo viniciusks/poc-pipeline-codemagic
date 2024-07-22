@@ -12,9 +12,9 @@ workflows:
       - name: List Directory
         script: |
           ls -lah app-example
-      - name: Get Android Flutter Packages
+      - name: Get Flutter Packages
         script: |
-          cd app-example/android
+          cd app-example
           flutter packages pub get
   cd-ios-workflow:
     name: CD iOS Workflow
@@ -29,7 +29,7 @@ workflows:
       - name: List Directory
         script: |
           ls -lah app-example
-      - name: Get iOS Flutter Packages
+      - name: Get Flutter Packages
         script: |
-          cd app-example/ios
+          cd app-example
           flutter packages pub get
