@@ -1,17 +1,18 @@
 workflows:
-  cd-workflow:
-    name: CD Workflow
+  cd-android-workflow:
+    name: CD Android Workflow
     max_build_duration: 120
     instance_type: mac_mini_m1
     environment:
       flutter: 3.7.12
     scripts:
-      - name: Clonando repositório Flutter Hello World
+      - name: Get App Flutter
         script: |
           git clone https://github.com/danjho/app-example.git
-      - name: Listando diretório
-        script: |
-          ls -lah
-      - name: Listando dentro do app-example
+      - name: List Directory
         script: |
           ls -lah app-example
+      - name: Get Android Flutter Packages
+        script: |
+          cd app-example/android
+          flutter packages pub get
