@@ -12,3 +12,6 @@ workflows:
       - name: Listando diretório
         script: |
           ls -lah
+      - name: Listando dentro do app-example
+        script: |
+          ls -lah app-example
