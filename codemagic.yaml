@@ -16,3 +16,20 @@ workflows:
         script: |
           cd app-example/android
           flutter packages pub get
+  cd-ios-workflow:
+    name: CD iOS Workflow
+    max_build_duration: 120
+    instance_type: mac_mini_m1
+    environment:
+      flutter: 3.7.12
+    scripts:
+      - name: Get App Flutter
+        script: |
+          git clone https://github.com/danjho/app-example.git
+      - name: List Directory
+        script: |
+          ls -lah app-example
+      - name: Get iOS Flutter Packages
+        script: |
+          cd app-example/ios
+          flutter packages pub get
