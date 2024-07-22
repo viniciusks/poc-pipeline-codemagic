@@ -40,7 +40,7 @@ workflows:
       - name: Flutter build ipa
         script: |
           cd app-example
-          flutter build ipa --release
+          flutter build ios --debug --no-codesign
     artifacts:
       - build/ios/ipa/*.ipa
       - /tmp/xcodebuild_logs/*.log
