@@ -4,7 +4,7 @@ workflows:
     max_build_duration: 120
     instance_type: mac_mini_m1
     environment:
-      flutter: 3.7.12
+      flutter: stable
     scripts:
       - name: Get App Flutter
         script: |
@@ -21,7 +21,7 @@ workflows:
     max_build_duration: 120
     instance_type: mac_mini_m1
     environment:
-      flutter: 3.7.12
+      flutter: stable
     scripts:
       - name: Get App Flutter
         script: |
