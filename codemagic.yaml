@@ -16,6 +16,10 @@ workflows:
         script: |
           cd app-example
           flutter packages pub get
+      - name: Flutter build apk
+        script: |
+          cd app-example
+          flutter build apk --debug
   cd-ios-workflow:
     name: CD iOS Workflow
     max_build_duration: 120
@@ -33,3 +37,11 @@ workflows:
         script: |
           cd app-example
           flutter packages pub get
+      - name: Flutter build ipa
+        script: |
+          cd app-example
+          flutter build ipa --release
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+      - flutter_drive.log
