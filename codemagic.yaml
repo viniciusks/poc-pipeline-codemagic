@@ -20,6 +20,10 @@ workflows:
         script: |
           cd app-example
           flutter build apk --debug
+    artifacts:
+      - build/**/outputs/**/*.apk
+      - build/**/outputs/**/mapping.txt
+      - flutter_drive.log
   cd-ios-workflow:
     name: CD iOS Workflow
     max_build_duration: 120
@@ -42,6 +46,6 @@ workflows:
           cd app-example
           flutter build ios --debug --no-codesign
     artifacts:
-      - build/ios/ipa/*.ipa
+      - build/ios/ipa/*.app
       - /tmp/xcodebuild_logs/*.log
       - flutter_drive.log
