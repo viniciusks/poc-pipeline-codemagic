@@ -46,6 +46,6 @@ workflows:
           cd app-example
           flutter build ios --debug --no-codesign
     artifacts:
-      - app-example/build/ios/ipa/*.app
+      - app-example/build/ios/iphoneos/*.app
       - /tmp/xcodebuild_logs/*.log
       - flutter_drive.log
