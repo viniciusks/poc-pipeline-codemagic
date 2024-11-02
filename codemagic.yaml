@@ -55,6 +55,7 @@ workflows:
     instance_type: mac_mini_m2
     environment:
       flutter: 3.22.0
+      docker: stable
     scripts:
       - name: Configurando ambiente da POC CD Nexus
         script: |
