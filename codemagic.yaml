@@ -55,10 +55,10 @@ workflows:
     instance_type: mac_mini_m2
     environment:
       flutter: 3.22.0
+      vars:
+        NEXUS_URL: "http://35.193.39.88:8081/"
     scripts:
       - name: Configurando ambiente da POC CD Nexus
         script: |
-          brew install --cask docker
-          open /Applications/Docker.app
-          while ! docker system info > /dev/null 2>&1; do sleep 1; done
-          docker -h
+          echo $NEXUS_URL
+          curl -v $NEXUS_URL

@@ -1,0 +1,1 @@
+Este aqui é um teste de um arquivo que será feito o upload para o Nexus.
