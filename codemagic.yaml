@@ -61,4 +61,4 @@ workflows:
       - name: Configurando ambiente da POC CD Nexus
         script: |
           echo $NEXUS_URL
-          curl -v $NEXUS_URL
+          curl -u admin:123 --upload-file ./artifacts/teste.txt $NEXUS_URL/repository/raw/
