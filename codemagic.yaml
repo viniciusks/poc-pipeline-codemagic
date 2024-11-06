@@ -57,7 +57,6 @@ workflows:
       flutter: 3.22.0
       vars:
         NEXUS_URL: "http://localhost:8081/"
-        NEXUS_PASS: "$(cat /Users/builder/clone/nexus/sonatype-work/nexus3/admin.password)"
     scripts:
       - name: Configurando ambiente
         script: |
@@ -67,10 +66,11 @@ workflows:
           tar xvzf nexus-3.74.0-05-unix.tar.gz
           ./nexus-3.74.0-05/bin/nexus start
           sleep 120
-          cd ..
+          export NEXUS_PASS=$(cat /Users/builder/clone/nexus/sonatype-work/nexus3/admin.password)
 
       - name: Download artefato do Nexus
         script: |
-          echo $NEUXS_PASS
-          ls -lah
-          # curl -u admin:123 --upload-file ./artifacts/teste.txt $NEXUS_URL/repository/raw/
+          pwd
+          export NEXUS_PASS=$(cat /Users/builder/clone/nexus/sonatype-work/nexus3/admin.password)
+          echo $NEXUS_PASS
+          curl -u admin:$NEXUS_PASS --upload-file ./artifacts/teste.txt $NEXUS_URL/repository/raw/
