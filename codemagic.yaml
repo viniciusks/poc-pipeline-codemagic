@@ -60,13 +60,10 @@ workflows:
     scripts:
       - name: Configurando ambiente
         script: |
-          echo "Instalando minIO Server"
-          brew install minio/stable/minio
-          MINIO_ROOT_USER=admin MINIO_ROOT_PASSWORD=password minio server /mnt/data --console-address ":9001"
-          echo "Instalando minIO Client"
-          brew install minio/stable/mc
-          mc alias set myminio/ http://MINIO-SERVER MYUSER MYPASSWORD
-          echo $MINIO-SERVER
+          echo "Instalando Nexus"
+          curl -v https://download.sonatype.com/nexus/3/nexus-3.74.0-05-unix.tar.gz -o nexus.tar.gz
+          tar xvzf nexus.tar.gz
+          ls -lah
 
       - name: Download artefato do Nexus
         script: |
