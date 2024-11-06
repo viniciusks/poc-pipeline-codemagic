@@ -62,8 +62,10 @@ workflows:
         script: |
           echo "Instalando Nexus"
           curl -v -OL https://download.sonatype.com/nexus/3/nexus-3.74.0-05-unix.tar.gz
+          mkdir nexus && cd nexus
           tar xvzf nexus-3.74.0-05-unix.tar.gz
           ls -lah
+          ls -lah nexus-3.74.0-05
 
       - name: Download artefato do Nexus
         script: |
