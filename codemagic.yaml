@@ -65,13 +65,30 @@ workflows:
           tar xvzf nexus-3.74.0-05-unix.tar.gz
           ./nexus-3.74.0-05/bin/nexus start
           sleep 120
+
+          echo "Atualizando usuário admin do Nexus"
+          export NX_PASSWORD=$(cat /Users/builder/clone/nexus/sonatype-work/nexus3/admin.password)
+          curl -ifu admin:"${NX_PASSWORD}" \
+            -XPUT -H 'Content-Type: application/json' \
+            --data '{"userId": "admin","firstName": "Administrator","lastName": "User","emailAddress": "admin@example.org","source": "default","status": "active","readOnly": false,"roles": ["nx-admin"],"externalRoles": []}' \
+            $NEXUS_URL/service/rest/v1/security/users/admin
+
+          echo "Alterando senha do usuário admin do Nexus"
+          export OLD_PASSWORD=$(cat /Users/builder/clone/nexus/sonatype-work/nexus3/admin.password)
+          export NEW_PASSWORD="admin123"
+          curl -ifu admin:"${OLD_PASSWORD}" \
+            -XPUT -H 'Content-Type: text/plain' \
+            --data "${NEW_PASSWORD}" \
+            $NEXUS_URL/service/rest/v1/security/users/admin/change-password
+
+          echo "Criando repositório no Nexus"
           export NEXUS_PASS=$(cat /Users/builder/clone/nexus/sonatype-work/nexus3/admin.password)
           curl -v --header "Content-Type: application/json" \
             --request POST \
             --data '{"name": "internal","online": true,"storage": {"blobStoreName": "default","strictContentTypeValidation": true,"writePolicy": "allow_once"},"cleanup": {"policyNames": ["string"]},"component": {"proprietaryComponents": true},"raw": {"contentDisposition": "ATTACHMENT"}}' \
             $NEXUS_URL/v1/repositories/raw/hosted
 
-      - name: Download artefato do Nexus
+      - name: Upload do artefato para o Nexus
         script: |
-          export NEXUS_PASS=$(cat /Users/builder/clone/nexus/sonatype-work/nexus3/admin.password)
+          export NEXUS_PASS="admin123"
           curl -u admin:$NEXUS_PASS --upload-file artifacts/teste.txt $NEXUS_URL/repository/internal/teste.txt
