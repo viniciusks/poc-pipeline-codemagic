@@ -66,10 +66,12 @@ workflows:
           ./nexus-3.74.0-05/bin/nexus start
           sleep 120
           export NEXUS_PASS=$(cat /Users/builder/clone/nexus/sonatype-work/nexus3/admin.password)
+          curl -v --header "Content-Type: application/json" \
+            --request POST \
+            --data '{"name": "internal","online": true,"storage": {"blobStoreName": "default","strictContentTypeValidation": true,"writePolicy": "allow_once"},"cleanup": {"policyNames": ["string"]},"component": {"proprietaryComponents": true},"raw": {"contentDisposition": "ATTACHMENT"}}' \
+            $NEXUS_URL/v1/repositories/raw/hosted
 
       - name: Download artefato do Nexus
         script: |
-          pwd
           export NEXUS_PASS=$(cat /Users/builder/clone/nexus/sonatype-work/nexus3/admin.password)
-          echo $NEXUS_PASS
           curl -u admin:$NEXUS_PASS --upload-file artifacts/teste.txt $NEXUS_URL/repository/raw/teste.txt
