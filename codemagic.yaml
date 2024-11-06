@@ -74,4 +74,4 @@ workflows:
       - name: Download artefato do Nexus
         script: |
           export NEXUS_PASS=$(cat /Users/builder/clone/nexus/sonatype-work/nexus3/admin.password)
-          curl -u admin:$NEXUS_PASS --upload-file artifacts/teste.txt $NEXUS_URL/repository/raw/teste.txt
+          curl -u admin:$NEXUS_PASS --upload-file artifacts/teste.txt $NEXUS_URL/repository/internal/teste.txt
