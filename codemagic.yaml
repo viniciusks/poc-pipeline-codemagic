@@ -61,8 +61,8 @@ workflows:
       - name: Configurando ambiente
         script: |
           echo "Instalando Nexus"
-          curl -v https://download.sonatype.com/nexus/3/nexus-3.74.0-05-unix.tar.gz -o nexus.tar.gz
-          tar xvzf nexus.tar.gz
+          curl -v -OL https://download.sonatype.com/nexus/3/nexus-3.74.0-05-unix.tar.gz
+          tar xvzf nexus-3.74.0-05-unix.tar.gz
           ls -lah
 
       - name: Download artefato do Nexus
