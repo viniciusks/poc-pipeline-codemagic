@@ -49,17 +49,22 @@ workflows:
       - app-example/build/ios/iphoneos/*.app
       - /tmp/xcodebuild_logs/*.log
       - flutter_drive.log
-  ci-nexus-workflow:
-    name: CI Nexus Workflow
+  cd-workflow:
+    name: CD Workflow
     max_build_duration: 120
     instance_type: mac_mini_m2
     environment:
       flutter: 3.22.0
       vars:
-        NEXUS_URL: "http://35.193.39.88:8081/"
+        NEXUS_URL: "http://34.134.45.90:8081/"
     scripts:
-      - name: Configurando ambiente da POC CD Nexus
+      - name: Configurando ambiente
         script: |
           echo $NEXUS_URL
           ls -lah
-          curl -u admin:123 --upload-file ./artifacts/teste.txt $NEXUS_URL/repository/raw/
+          curl -u admin:123 --upload-file ./artifacts/teste.txt $NEXUS_URL/repository/raw/teste.txt
+      - name: Download artefato do Nexus
+        script: |
+          echo $NEXUS_URL
+          ls -lah
+          # curl -u admin:123 --upload-file ./artifacts/teste.txt $NEXUS_URL/repository/raw/
