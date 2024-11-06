@@ -72,4 +72,4 @@ workflows:
           pwd
           export NEXUS_PASS=$(cat /Users/builder/clone/nexus/sonatype-work/nexus3/admin.password)
           echo $NEXUS_PASS
-          curl -u admin:$NEXUS_PASS --upload-file ./artifacts/teste.txt $NEXUS_URL/repository/raw/
+          curl -u admin:$NEXUS_PASS --upload-file artifacts/teste.txt $NEXUS_URL/repository/raw/teste.txt
