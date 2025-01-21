@@ -8,6 +8,7 @@ workflows:
     scripts:
       - name: Get App Flutter
         script: |
+          fdesetup status
           git clone https://github.com/danjho/app-example.git
       - name: List Directory
         script: |
